@@ -60,7 +60,6 @@
             echo "No videos found.";
         }
 
-        // Close the connection
         $conn->close();
         ?>
 
