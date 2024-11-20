@@ -6,11 +6,23 @@
         <link rel="icon" href="favicon.png">
         <title>Lepszy Jutub</title>
     </head>
+    
     <body>
         <div class="header">
-            <h1><a href="upload.php">Prześlij filmik</a></h1>
+            <h1><a href="upload.php"><img src="upload_icon.png"/></a></h1>
         </div><br>
+        <script>
+            const header = document.querySelector('.header');
 
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 100) {
+                    header.classList.add('vanish');
+                } else {
+                    header.classList.remove('vanish');
+                }
+            });
+
+        </script>
         <?php
         $username = "root";
         $password = "";

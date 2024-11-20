@@ -7,12 +7,20 @@ body {
 }
 
 .header {
-    background-color: #ffffff;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: #4D8FE3;
     color: white;
     padding: 20px;
-    height: 50px;
+    height: auto;
     font-family: Arial, sans-serif;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.header .vanish {
+    background-color:transparent;
 }
 
 .header h1 {
@@ -24,20 +32,21 @@ a {
     display: inline-block;
     margin-bottom: 20px;
     text-align: center;
-    width: fit-content;
-    color: white;
-    background-color: #000008;
+    width: 30px;
+    color: black;
+    background-color: white ;
     padding: 10px 20px;
     border-radius: 10px;
     text-decoration: none;
     transition: 0.1s ease-in;
-    border: 1px #000008 solid;
+    border: 1px white solid;
 }
-
+a img {
+    width: 20px;
+}
 a:hover {
-    background-color: transparent;
-    color: #000008;
-    border: 1px #000008 solid;
+    transition: transform 0.5s ease-in-out;
+    border: 3px #4D8FE3 solid ;
 }
 
 
@@ -69,14 +78,18 @@ a:hover {
 
 .video-item {
     background-color: #ffffff;
-    border: 1px solid #ddd;
+    border: 1px solid transparent;
     border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
     padding: 10px;
     text-align: center;
     transition: transform 0.2s ease;
 }
-
+.video-item:hover{
+    transition: transform 0.5s ease-in-out;
+    background-color: #f8f8f8;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
 .video-item video {
     width: 460px;
     height: 230px;
