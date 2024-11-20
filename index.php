@@ -33,7 +33,7 @@
             $desc_random = $row_random['opis'];
 
 
-            echo "<video width='640px' height='320px' controls><source src='$video_random' type='video/mp4'></video>";
+            echo "<video width='1080px' height='640px' controls><source src='$video_random' type='video/mp4'></video>";
             echo "<div class='title'>$title_random</div>";
             echo "<div class='desc'>$desc_random</div>";
         } else {
@@ -45,19 +45,21 @@
 
         if ($result_all && $result_all->num_rows > 0) {
             echo "<h2>Wszystkie filmiki</h2>";
+            echo "<div class='video-grid'>";
             while ($row_all = $result_all->fetch_assoc()) {
                 $video_all = $row_all['plik'];
                 $title_all = $row_all['nazwa'];
                 $desc_all = $row_all['opis'];
-
+                
                 echo "<div class='video-item'>";
-                echo "<video width='320px' height='160px' controls><source src='$video_all' type='video/mp4'></video>";
+                echo "<video width='360px' height='180px' controls><source src='$video_all' type='video/mp4'></video>";
                 echo "<div class='title'>$title_all</div>";
                 echo "<div class='desc'>$desc_all</div>";
-                echo "</div><br>";
+                echo "</div>";
             }
+            echo "</div>";
         } else {
-            echo "No videos found.";
+            echo "Nie znaleziono żadnych filmików";
         }
 
         $conn->close();
