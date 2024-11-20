@@ -1,0 +1,101 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.header {
+    background-color: #ffffff;
+    color: white;
+    padding: 20px;
+    height: 50px;
+    font-family: Arial, sans-serif;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.header h1 {
+    float: left;
+    margin: 0;
+}
+
+a {
+    display: inline-block;
+    margin-bottom: 20px;
+    text-align: center;
+    width: fit-content;
+    color: white;
+    background-color: #000008;
+    padding: 10px 20px;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: 0.1s ease-in;
+    border: 1px #000008 solid;
+}
+
+a:hover {
+    background-color: transparent;
+    color: #000008;
+    border: 1px #000008 solid;
+}
+
+/* Randomized video styles */
+video.random-video {
+    margin-top: 20px;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 640px; /* Larger video for the random video */
+    height: 320px;
+}
+
+.title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    margin-top: 15px;
+}
+
+.desc {
+    font-size: 16px;
+    color: #555;
+    max-width: 80%;
+    margin: 15px auto;
+    line-height: 1.5;
+}
+
+/* Grid layout for all non-randomized videos */
+.video-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Responsive columns */
+    gap: 20px;
+    margin-top: 30px;
+    padding: 0 20px;
+}
+
+.video-item {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    text-align: center;
+    transition: transform 0.2s ease;
+    display:grid;
+    grid-template-columns: auto auto;
+}
+
+
+.video-item .title {
+    font-size: 35px;
+    font-weight: bold;
+    color: #333;
+    margin-top: 10px;
+}
+
+.video-item .desc {
+    font-size: 20px;
+    color: #555;
+    line-height: 1.4;   
+}
