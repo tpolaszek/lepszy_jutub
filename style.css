@@ -37,12 +37,14 @@ a {
     background-color: white ;
     padding: 10px 20px;
     border-radius: 10px;
+	margin-left: 20px;
     text-decoration: none;
     transition: 0.1s ease-in;
     border: 1px white solid;
 }
 a img {
     width: 20px;
+	
 }
 a:hover {
     transition: transform 0.5s ease-in-out;

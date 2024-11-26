@@ -10,6 +10,7 @@
     <body>
         <div class="header">
             <h1><a href="upload.php"><img src="upload_icon.png"/></a></h1>
+            <h1><a href="login.php"><img src="user.png"/></a></h1>
         </div><br>
         <script>
             const header = document.querySelector('.header');
