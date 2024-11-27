@@ -53,7 +53,7 @@ body {
     margin: 0;
 }
 
-a {
+.return_page a {
     display: inline-block;
     margin-bottom: 20px;
     text-align: center;
@@ -75,4 +75,10 @@ a:hover {
 .account_exists{
 	color:  #ff4d4d;
 	margin-top:10px;
+}
+p {
+    padding-top: 10px;
+}
+p a{
+    text-decoration: none;
 }

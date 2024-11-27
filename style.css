@@ -110,3 +110,24 @@ a:hover {
     line-height: 1.4;
     margin-top: 5px;
 }
+video {
+	border: 1px solid transparent;
+	border-radius: 10px;
+}
+.main_video {
+	display:inline-block;
+	background-color: #ffffff;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    text-align: center;
+    transition: transform 0.2s ease;
+}
+.main_video{
+	width: 1120px;
+	height: 780px;
+}
+.main_video:hover{
+	transition: transform 0.5s ease-in-out;
+    background-color: #f8f8f8;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
