@@ -17,10 +17,11 @@
             if (move_uploaded_file($_FILES['filmik']['tmp_name'], $sciezkaDocelowa)) {
                 $tytul = $_POST['tytul'];
                 $opis = $_POST['opis'];
+                $tagi = $_POST['tagi'];
 
-                $sql = "INSERT INTO filmy (nazwa, opis, plik) VALUES (?, ?, ?)";
+                $sql = "INSERT INTO filmy (nazwa, opis, plik, tagi) VALUES (?, ?, ?, ?)";
                 $stmt = $conn->prepare($sql);
-                $stmt->bind_param("sss", $tytul, $opis, $sciezkaDocelowa);
+                $stmt->bind_param("ssss", $tytul, $opis, $sciezkaDocelowa, $tagi);
 
                 if ($stmt->execute()) {
                     echo "Plik został przesłany i zapisany pomyślnie!";
@@ -48,6 +49,7 @@
     <form action="upload.php" method="post" enctype="multipart/form-data">
         Tytuł: <input type="text" name="tytul" required><br>
         Opis: <input type="text" name="opis" required><br>
+        tagi: <input type="text" name="tagi" required><br>
         Wybierz filmik: <input type="file" name="filmik" accept="video/mp4" required><br>
         <input type="submit" value="Prześlij">
     </form>
