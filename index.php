@@ -8,10 +8,25 @@
     </head>
     
     <body>
-        <div class="header">
-            <h1><a href="upload.php"><img src="upload_icon.png"/></a></h1>
-            <h1><a href="register.php"><img src="user.png"/></a></h1>
-        </div><br>
+    <?php
+    session_start();
+    ?>
+
+    <div class="header">
+        <?php if (isset($_SESSION['username'])): ?>
+            <div class="user-info">
+                <h1><a href="upload.php"><img src="upload_icon.png"/></a></h1>
+                <span>Witaj, <?php echo htmlspecialchars($_SESSION['username']); ?></span>
+                
+                <form action="logout.php" method="post" style="display:inline;">
+                    <button type="submit" class="logout-btn">Wyloguj się</button>
+                </form>
+            </div>
+        <?php else: ?>
+            <h1><a href="login.php"><img src="user.png" alt="Login"></a></h1>
+        <?php endif; ?>
+    </div>
+
         <?php
         $username = "root";
         $password = "";

@@ -131,3 +131,31 @@ video {
     background-color: #f8f8f8;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
+.user-info {
+    float: left;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.user_info span {
+    margin-bottom: 20px;
+}
+.logout-btn {
+    background-color: white;
+    color: white;
+    display: inline-block;
+    margin-bottom: 20px;
+    text-align: center;
+    color: black;
+    padding: 10px 20px;
+    border-radius: 10px;
+	margin-left: 20px;
+    text-decoration: none;
+    transition: 0.1s ease-in;
+    border: 1px white solid;
+}
+
+.logout-btn:hover {
+    background-color: red;
+
+}

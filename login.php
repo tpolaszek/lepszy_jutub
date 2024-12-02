@@ -12,28 +12,42 @@
             Hasło: <input type="password" name="haslo" pattern="^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*(),.?&quot;:{}|<>])[A-Za-z\d!@#$%^&*(),.?&quot;:{}|<>]{8,}$" required><br>
             <input type="submit" value="Zaloguj się">
             <?php
-                $username = "root";
-                $password = "";
-                $servername = "localhost";
-                $db = "bilibili";
-                $conn = new mysqli($servername, $username, $password, $db);
+            session_start();
+            $username = "root";
+            $password = "";
+            $servername = "localhost";
+            $db = "bilibili";
 
-                if (isset($_POST["login"]) && isset($_POST["haslo"])) {
-                    $login = $_POST["login"];
-                    $password = $_POST["haslo"];
+            $conn = new mysqli($servername, $username, $password, $db);
+
+            if (isset($_POST["login"]) && isset($_POST["haslo"])) {
+                $login = $_POST["login"];
+                $password = $_POST["haslo"];
                 
-                    $checkUserSql = "SELECT user_id FROM users WHERE username = ?";
-                    $stmt = $conn->prepare($checkUserSql);
-                    $stmt->bind_param("s", $login);
-                    $stmt->execute();
-                    $result = $stmt->get_result();
-                
-                    if ($result->num_rows > 0){
-                        header("Location:index.php");
+                $checkUserSql = "SELECT user_id, password FROM users WHERE username = ?";
+                $stmt = $conn->prepare($checkUserSql);
+                $stmt->bind_param("s", $login);
+                $stmt->execute();
+                $result = $stmt->get_result();
+
+                if ($result->num_rows > 0) {
+                    $row = $result->fetch_assoc();
+                    // Assuming the database stores hashed passwords:
+                    if (password_verify($password, $row['password'])) {
+                        $_SESSION['username'] = $login;
+                        header("Location: index.php");
+                        exit();
+                    } else {
+                        echo "Invalid login credentials.";
                     }
+                } else {
+                    echo "Invalid login credentials.";
                 }
-            
+            }
             ?>
+
+
+            <p> Nie masz konta? <a href="register.php">Zarejestruj się</a></p>
         </form>
     </body>
 </html>
