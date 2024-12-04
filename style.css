@@ -94,7 +94,7 @@ body {
 
 .video-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     grid-gap: 20px;
     padding: 20px;
     max-width: 1200px;
@@ -107,10 +107,14 @@ body {
     border-radius: 10px;
     padding: 10px;
     text-align: center;
+    width: 300px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .video-item video {
-    width: 100%;
-    height: auto;
+    width: 300px;
+}
+.video-grid a{
+    color:black;
+    text-decoration: none;
 }
