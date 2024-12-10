@@ -64,19 +64,21 @@
     }
     ?>
     <?php
-    $sql_random = "SELECT plik, nazwa FROM filmy ORDER BY RAND() LIMIT 2";
+    $sql_random = "SELECT id_filmiku, plik, nazwa FROM filmy ORDER BY RAND() LIMIT 2";
     $result_random = $conn->query($sql_random);
 
     if ($result_random && $result_random->num_rows > 0) {
         echo "<div class='sidebar'>";
         while ($row_random = $result_random->fetch_assoc()) {
+            $id_filmiku = $row_random['id_filmiku'];
             $video_random = $row_random['plik'];
             $title_random = $row_random['nazwa'];
-
+            echo "<a href='video.php?id=" . $id_filmiku . "'>";
             echo "<div class='video-item2'>";
             echo "<video controls><source src='$video_random' type='video/mp4'></video>";
             echo "<div class='title'>$title_random</div>";
             echo "</div>";
+            echo "</a>";
         }
         echo "</div>";
     } else {
