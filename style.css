@@ -1,128 +1,162 @@
+:root {
+    --font-family: 'Roboto', Arial, sans-serif;
+    --background-color: #f0f2f5;
+    --primary-color: #4d8fe3;
+    --secondary-color: #ff5252;
+    --text-color: #333;
+    --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --hover-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+    --border-radius: 8px;
+    --container-padding: 20px;
+}
+
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    font-family: var(--font-family);
+    background-color: var(--background-color);
     margin: 0;
     padding: 0;
     text-align: center;
     box-sizing: border-box;
-    color: black;
+    color: var(--text-color);
 }
 
 .header {
-    position: absolute;
+    position: fixed;
     top: 0;
-    right: 0;
-    width: 20%;
-    background-color: rgb(77, 143, 227);
+    width: 100%;
+    background-color: lightgray;
     color: white;
-    padding: 10px;
-    height: 150px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: var(--container-padding);
+    height: 100px;
+    box-shadow: var(--box-shadow);
     text-align: center;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    opacity: 80%;
+}
+
+.header h1 a {
+    display: flex;
+    align-items: center;
+    color: white;
+    text-decoration: none;
 }
 
 .header h1 a img {
     width: 50px;
     height: 50px;
+    margin-right: 10px;
 }
 
 .logout-btn {
-    background-color: #f44336;
+    background-color: var(--secondary-color);
     color: white;
     border: none;
-    margin-left: 10px;
-    padding: 10px 25px;
-    border-radius: 5px;
+    padding: 10px 20px;
+    border-radius: var(--border-radius);
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .logout-btn:hover {
-    background-color: #d32f2f;
+    background-color: #e53935;
+    transform: scale(1.05);
 }
 
 .main_video {
     margin: 20px auto;
-    background-color: #ffffff;
+    background-color: white;
     border: 1px solid #ddd;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    padding: 20px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    padding: var(--container-padding);
     width: 70%;
-    float: left;
+    clear: both;
+    animation: fadeIn 0.5s ease;
 }
 
 .main_video video {
     width: 100%;
     height: auto;
-    border-radius: 10px;
+    border-radius: var(--border-radius);
 }
 
 .sidebar {
+    position: fixed;
     top: 30%;
-    right: 3%;   
-    position:absolute;
-    float: right;
+    right: 3%;
     width: 25%;
     max-width: 300px;
+    animation: slideIn 0.5s ease;
 }
 
-.video-item2 {
-    background-color: #ffffff;
+.video-item {
+    background-color: white;
     border: 1px solid #ddd;
-    border-radius: 10px;
+    border-radius: var(--border-radius);
     margin-bottom: 20px;
     padding: 10px;
     text-align: center;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--box-shadow);
+    transition: box-shadow 0.3s ease, background-color 0.3s ease, transform 0.2s ease;
+    width: 300px;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
-.video-item2:hover {
-    background-color: #f8f8f8;
-    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+.video-item:hover {
+    background-color: #f9f9f9;
+    box-shadow: var(--hover-shadow);
+    transform: translateY(-5px);
 }
 
-.video-item2 video {
+.video-item video {
     width: 100%;
     height: auto;
+    border-radius: var(--border-radius);
 }
 
 .video-grid-container {
-    clear: both;
     margin-top: 20px;
     text-align: center;
+    padding: var(--container-padding);
 }
 
 .video-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    grid-gap: 20px;
-    padding: 20px;
+    gap: 20px;
     max-width: 1200px;
     margin: 0 auto;
+    padding: var(--container-padding);
 }
 
-.video-item {
-    background-color: #ffffff;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    padding: 10px;
-    text-align: center;
-    width: 300px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.video-item video {
-    width: 300px;
-}
-.video-grid a{
-    color:black;
+.video-grid a {
+    color: var(--text-color);
     text-decoration: none;
 }
+
+a {
+    color: var(--text-color);
+    text-decoration: none;
+}
+
 video::-webkit-media-controls {
     display: none;
-  }
-a {
-    color: black;
-    text-decoration: none;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideIn {
+    from { transform: translateX(100%); }
+    to { transform: translateX(0); }
 }

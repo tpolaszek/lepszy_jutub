@@ -26,7 +26,6 @@
             <h1><a href="login.php"><img src="user.png" alt="Login"></a></h1><br>
         <?php endif; ?>
        
-        
     </div>
     
     </div><br>
@@ -36,12 +35,14 @@
     $servername = "localhost";
     $db = "bilibili";
 
+    // Połączenie z bazą danych
     $conn = new mysqli($servername, $username, $password, $db);
 
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
 
+    // Zapytanie o losowy film
     $sql_random = "SELECT id_filmiku, plik, nazwa FROM filmy ORDER BY RAND() LIMIT 1";
     $result_random = $conn->query($sql_random);
 
@@ -51,6 +52,7 @@
         $id_filmiku = $row_random['id_filmiku']; 
         $video_random = $row_random['plik'];
         $title_random = $row_random['nazwa'];
+        echo "<div style='margin-top:110px;'></div>";
         echo "<a href='video.php?id=" . $id_filmiku . "'>";
         echo "<div class='main_video'>";
         
@@ -63,57 +65,37 @@
         echo "Nie znaleziono żadnego filmu.";
     }
     ?>
-    <?php
-    $sql_random = "SELECT id_filmiku, plik, nazwa FROM filmy ORDER BY RAND() LIMIT 2";
-    $result_random = $conn->query($sql_random);
 
-    if ($result_random && $result_random->num_rows > 0) {
-        echo "<div class='sidebar'>";
-        while ($row_random = $result_random->fetch_assoc()) {
-            $id_filmiku = $row_random['id_filmiku'];
-            $video_random = $row_random['plik'];
-            $title_random = $row_random['nazwa'];
+    <?php
+    $sql_all = "SELECT id_filmiku, plik, nazwa, wyswietlenia
+                FROM filmy
+                ORDER BY wyswietlenia DESC";  
+    $result_all = $conn->query($sql_all);
+
+    if ($result_all && $result_all->num_rows > 0) {
+        echo "<div class='video-grid-container'>";
+        echo "<div class='video-grid'>";
+        
+        while ($row_all = $result_all->fetch_assoc()) {
+            $id_filmiku = $row_all['id_filmiku']; 
+            $video_all = $row_all['plik'];
+            $title_all = $row_all['nazwa'];
+            $wyswietlenia_all = $row_all['wyswietlenia'];
+
             echo "<a href='video.php?id=" . $id_filmiku . "'>";
-            echo "<div class='video-item2'>";
-            echo "<video controls><source src='$video_random' type='video/mp4'></video>";
-            echo "<div class='title'>$title_random</div>";
+            echo "<div class='video-item'>";
+            echo "<video controls><source src='$video_all' type='video/mp4'></video>";
+            echo "<div class='title'>$title_all</div>";
+            echo "<div class='views'>Wyświetlenia: $wyswietlenia_all</div>"; 
             echo "</div>";
             echo "</a>";
         }
-        echo "</div>";
+        
+        echo "</div></div>";
     } else {
-        echo "<div class='sidebar'>Nie znaleziono losowych filmików</div>";
+        echo "Nie znaleziono żadnych filmików";
     }
     ?>
-
-<?php
-$sql_all = "SELECT id_filmiku, plik, nazwa FROM filmy";
-$result_all = $conn->query($sql_all);
-
-if ($result_all && $result_all->num_rows > 0) {
-    echo "<div class='video-grid-container'>";
-    echo "<h2>Wszystkie filmiki</h2>";
-    echo "<div class='video-grid'>";
-    while ($row_all = $result_all->fetch_assoc()) {
-        $id_filmiku = $row_all['id_filmiku']; 
-        $video_all = $row_all['plik'];
-        $title_all = $row_all['nazwa'];
-        echo "<a href='video.php?id=" . $id_filmiku . "'>";
-        echo "<div class='video-item'>";
-        
-        echo "<video controls><source src='$video_all' type='video/mp4'></video>";
-        
-        echo "<div class='title'>$title_all</div>";
-        echo "</div>";
-        echo "</a>";
-    }
-    
-    echo "</div></div>";
-} else {
-    echo "Nie znaleziono żadnych filmików";
-}
-?>
-
 
     </body> 
 </html>
