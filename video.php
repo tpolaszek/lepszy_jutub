@@ -58,21 +58,59 @@ $stmt_sidebar->bind_param("i", $id);
 $stmt_sidebar->execute();
 $result_sidebar = $stmt_sidebar->get_result();
 
-echo '<div class="sidebar">';
-if ($result_sidebar && $result_sidebar->num_rows > 0) {
-    while ($row = $result_sidebar->fetch_assoc()) {
-        $sidebar_id = $row['id_filmiku'];
-        $sidebar_file = $row['plik'];
-        $sidebar_title = $row['nazwa'];
 
-        echo '<div class="sidebar-item">';
-        echo "<a href='?id=$sidebar_id'>";
-        echo "<video><source src='$sidebar_file' type='video/mp4'></video>";
-        echo "<p>$sidebar_title</p>";
-        echo "</a>";
-        echo '</div>';
-    }
+echo '<div class="sidebar">';
+$tags = explode(' ', $video_tags); 
+
+
+$conditions = [];
+foreach ($tags as $tag) {
+    $conditions[] = "tagi LIKE ?";
 }
+$placeholders = implode(' OR ', $conditions);
+
+
+$sql_sidebar = "SELECT id_filmiku, plik, nazwa, tagi
+                FROM filmy 
+                WHERE id_filmiku != ? AND ($placeholders)
+                LIMIT 5";
+
+$stmt_sidebar = $conn->prepare($sql_sidebar);
+
+$params = [];
+$params[] = $id;
+foreach ($tags as $tag) {
+    $params[] = '%' . trim($tag) . '%';
+}
+
+$types = str_repeat('s', count($params) - 1);
+$types = "i" . $types;
+
+$stmt_sidebar->bind_param($types, ...$params);
+
+$stmt_sidebar->execute();
+$result_sidebar = $stmt_sidebar->get_result();
+
+
+    if ($result_sidebar && $result_sidebar->num_rows > 0) {
+        while ($row = $result_sidebar->fetch_assoc()) {
+            $sidebar_id = $row['id_filmiku'];
+            $sidebar_file = $row['plik'];
+            $sidebar_title = $row['nazwa'];
+            $tag1 = $row['tagi'];
+
+            echo '<div class="sidebar-item">';
+            echo "<a href='?id=$sidebar_id'>";
+            echo "<video><source src='$sidebar_file' type='video/mp4'></video>";
+            echo "<p>$sidebar_title</p>";
+            echo "<p>$tag1</p>";
+            echo "</a>";
+            echo '</div>';
+        }
+    } else {
+        echo "<p>Brak podobnych filmów.</p>";
+    }
+
 echo '</div>'; // sidebar
 
 echo '</div>'; // container
