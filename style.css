@@ -36,22 +36,7 @@ body {
     justify-content: space-between;
     opacity: 80%;
 }
-.user-info{
-    display:flex;
-}
-.user-info img{
-    margin-left: 40px;
-}
-.user-info span{
-    margin-top: 20px;
-    font-size: 20px;
-    color: black;
-    margin-left: 10px;
 
-}
-.user-info form {
-    margin-left: 30px;
-}
 .header h1 a {
     display: flex;
     align-items: center;
@@ -81,6 +66,8 @@ body {
 }
 
 .main_video {
+
+    
     margin: 20px auto;
     background-color: white;
     border: 1px solid #ddd;
@@ -117,7 +104,7 @@ body {
     box-shadow: var(--box-shadow);
     transition: box-shadow 0.3s ease, background-color 0.3s ease, transform 0.2s ease;
     width: 300px;
-    height: 250px;
+    height: 200px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -161,11 +148,17 @@ a {
     text-decoration: none;
 }
 
-
 video::-webkit-media-controls {
     display: none;
 }
-
+.video-link {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    text-align: inherit;
+    color: inherit;
+}
 
 @keyframes fadeIn {
     from { opacity: 0; }
@@ -175,9 +168,4 @@ video::-webkit-media-controls {
 @keyframes slideIn {
     from { transform: translateX(100%); }
     to { transform: translateX(0); }
-}
-.views {
-    margin: 10px;
-    font-weight: 700;
-
 }
