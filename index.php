@@ -15,12 +15,16 @@
     <div class="header">
         <?php if (isset($_SESSION['username'])): ?>
             <div class="user-info">
-                <h1><a href="upload.php"><img src="upload_icon.png"/></a></h1>
-                <span>Witaj, <?php echo htmlspecialchars($_SESSION['username']); ?></span>
+                <h1><a href="upload.php"><img src="upload_icon.png"/></a><span>Witaj, <?php echo htmlspecialchars($_SESSION['username']); ?>
                 
+                </span>
                 <form action="logout.php" method="post" style="display:inline;">
                     <button type="submit" class="logout-btn">Wyloguj się</button>
                 </form>
+                </h1>
+                
+                
+                
             </div>
         <?php else: ?>
             <h1><a href="login.php"><img src="user.png" alt="Login"></a></h1><br>
@@ -56,7 +60,7 @@
         echo "<a href='video.php?id=" . $id_filmiku . "'>";
         echo "<div class='main_video'>";
         
-        echo "<video controls><source src='$video_random' type='video/mp4'></video>";
+        echo "<video><source src='$video_random' type='video/mp4'></video>";
         
         echo "<div class='title'>$title_random</div>";
         echo "</div>";
@@ -84,7 +88,7 @@
 
             echo "<a href='video.php?id=" . $id_filmiku . "'>";
             echo "<div class='video-item'>";
-            echo "<video controls><source src='$video_all' type='video/mp4'></video>";
+            echo "<video><source src='$video_all' type='video/mp4'></video>";
             echo "<div class='title'>$title_all</div>";
             echo "<div class='views'>Wyświetlenia: $wyswietlenia_all</div>"; 
             echo "</div>";

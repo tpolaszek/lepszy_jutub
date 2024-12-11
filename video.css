@@ -79,13 +79,17 @@ body {
 }
 /* Styl dla nagłówka */
 header {
-    background-color: rgb(77, 143, 227);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: lightgray;
     color: white;
     padding: 15px 20px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    opacity: 80%;
 }
 
 header .home-link {
